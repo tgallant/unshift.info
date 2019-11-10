@@ -10,6 +10,7 @@ steps:
   - 'push'
   - 'gcr.io/$PROJECT_ID/unshift:$SHORT_SHA'
 - name: 'gcr.io/$PROJECT_ID/kustomize'
+  dir: 'infra'
   args:
   - 'edit'
   - 'set'
