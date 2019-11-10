@@ -7,6 +7,13 @@ steps:
   - '.'
 - name: 'gcr.io/cloud-builders/docker'
   args:
+  - 'run'
+  - 'gcr.io/$PROJECT_ID/unshift:$SHORT_SHA'
+  - '/bin/sh'
+  - '-c'
+  - 'flake8 && pytest'
+- name: 'gcr.io/cloud-builders/docker'
+  args:
   - 'push'
   - 'gcr.io/$PROJECT_ID/unshift:$SHORT_SHA'
 - name: 'gcr.io/$PROJECT_ID/kustomize'
