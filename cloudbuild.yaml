@@ -15,6 +15,9 @@ steps:
   - 'set'
   - 'image'
   - 'unshift=gcr.io/$PROJECT_ID/unshift:$SHORT_SHA'
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=us-west1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=unshift'
 - name: 'gcr.io/icloud-builders/kubectl'
   args:
   - 'apply'
