@@ -19,7 +19,7 @@ steps:
   env:
   - 'CLOUDSDK_COMPUTE_REGION=us-west1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=unshift-dev'
-- name: 'gcr.io/icloud-builders/kubectl'
+- name: 'gcr.io/cloud-builders/kubectl'
   args:
   - 'apply'
   - '-k'
