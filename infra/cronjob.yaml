@@ -9,8 +9,13 @@ spec:
     spec:
       template:
         spec:
+          restartPolicy: OnFailure
           containers:
           - name: worker
             image: unshift
             command: ['python', 'worker.py']
-          restartPolicy: OnFailure
+            envFrom:
+            - configMapRef:
+                name: worker-config
+            - secretKeyRef:
+                name: worker-secrets
