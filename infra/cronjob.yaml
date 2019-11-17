@@ -1,7 +1,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: test-cron
+  name: actions-worker-cron
 spec:
   schedule: '*/1 * * * *'
   concurrencyPolicy: Allow
@@ -13,9 +13,9 @@ spec:
           containers:
           - name: worker
             image: unshift
-            command: ['python', 'worker.py']
+            command: ['python', '-u', 'worker.py']
             envFrom:
             - configMapRef:
-                name: worker-config
+                name: actions-config
             - secretRef:
-                name: worker-secrets
+                name: actions-secrets
