@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: actions-api
+  labels:
+    app: actions-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: actions-api
+  template:
+    metadata:
+      labels:
+        app: actions-api
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: actions-api
+        image: unshift
+        command: ['gunicorn', '-b', '0.0.0.0:8000', '-w', '4', 'app:app']
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - configMapRef:
+            name: actions-config
+        - secretRef:
+            name: actions-secrets
