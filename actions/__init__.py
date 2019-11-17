@@ -8,7 +8,6 @@ action_types = {
 
 def make_action(configuration):
     action_type = configuration.get('action_type')
-    print(action_type)
     action = action_types.get(action_type)
     return action(configuration)
 

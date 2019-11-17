@@ -1,3 +1,4 @@
+import logging
 import time
 
 
@@ -6,7 +7,7 @@ class ExampleAction:
         self.configuration = configuration
 
     def perform(self):
-        print('perform example action')
-        time.sleep(120)
-        print('finish example action')
+        logging.info('perform example action')
+        time.sleep(5)
+        logging.info('finish example action')
         return self.configuration
