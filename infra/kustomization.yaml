@@ -1,11 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 commonLabels:
-  app: unshift
+  environment: dev
 nameSuffix: -dev
 images:
 - name: unshift
   newName: gcr.io/dummy-project/unshift
   newTag: latest
 resources:
+- redis-deployment.yaml
+- redis-service.yaml
 - cronjob.yaml
