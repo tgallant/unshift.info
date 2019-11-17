@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: actions-redis
+  labels:
+    app: actions-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: actions-redis
+  template:
+    metadata:
+      labels:
+        app: actions-redis
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: actions-redis
+        image: redis
+        env:
+        - name: MASTER
+          value: 'true'
+        ports:
+        - containerPort: 6379
