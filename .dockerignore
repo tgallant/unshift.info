@@ -1,0 +1,4 @@
+/flyway.conf
+__pycache__/
+*.py[cod]
+/.env
