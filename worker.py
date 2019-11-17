@@ -11,6 +11,10 @@ import actions
 
 
 def get_job(rconn):
+    if os.path.exists('job_config.json'):
+        logging.info('reading from job_config.json')
+        job_file = open('job_config.json').read()
+        return json.loads(job_file)
     job = rconn.blpop(['queue:jobs'], 60)
     if not job:
         return None
@@ -38,6 +42,8 @@ def main(opts):
         return
     job_id = job['id']
     job_args = job['args']
+    job_file = open('job_config.json', 'w')
+    json.dump(job, job_file, default=str)
     set_job_status(conn, job_id, 'processing')
     logging.info(f'processing job: {job_id}')
     try:
