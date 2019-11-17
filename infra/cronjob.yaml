@@ -7,6 +7,7 @@ spec:
   concurrencyPolicy: Allow
   jobTemplate:
     spec:
+      completions: 3
       template:
         spec:
           restartPolicy: OnFailure
