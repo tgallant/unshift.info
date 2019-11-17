@@ -12,7 +12,8 @@ import actions
 
 def get_job(rconn):
     job = rconn.blpop(['queue:jobs'], 60)
-    if not job: return None
+    if not job:
+        return None
     return json.loads(job[1])
 
 
@@ -34,7 +35,7 @@ def main(opts):
     job = get_job(rconn)
     if not job:
         logging.info('no job to process')
-        continue
+        return
     job_id = job['id']
     job_args = job['args']
     set_job_status(conn, job_id, 'processing')
@@ -51,6 +52,7 @@ def main(opts):
     finally:
         conn.close()
         rconn.close()
+
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
